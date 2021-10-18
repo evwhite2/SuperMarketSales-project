@@ -78,11 +78,12 @@ file['Naypyitaw']= city.Naypyitaw
 file['Mandalay']= city.Mandalay
 
 
+# #Rating column recoded
+file.loc[file.Rating < 7, 'Rating'] = 1
+file.loc[file.Rating >= 7, 'Rating'] = 0
+file.rename(columns = {"Rating":"Unsatisfied"}, inplace = True)
 
-
-#chaning the layout of the page
-file=file[['invoice_ID', 'Branch', 'City','Yangon', 'Naypyitaw','Mandalay', 'customer_type','member_1', 'Gender','Gender_Male1', 'product_line','fashion_accessories','food_bev', 'electronic_accessories','sports_travel', 'home_lifesyle', 'health_beauty', 'unit_price', 'Quantity', 'tax_5%', 'Total', 'Date','Time', 'Payment','Ewallet', 'Cash', 'credit_card', 'cogs', 'gross_margin_%', 'gross_income','Rating']]
-
-
+# #changing the layout of the page
+file=file[['invoice_ID', 'Branch', 'City','Yangon', 'Naypyitaw','Mandalay', 'customer_type','member_1', 'Gender','Gender_Male1', 'product_line','fashion_accessories','food_bev', 'electronic_accessories','sports_travel', 'home_lifesyle', 'health_beauty', 'unit_price', 'Quantity', 'tax_5%', 'Total', 'Date','Time', 'Payment','Ewallet', 'Cash', 'credit_card', 'cogs', 'gross_margin_%', 'gross_income','Unsatisfied']]
 
 new_file= file.to_csv("./new_supermarket_dummy_data.csv")
