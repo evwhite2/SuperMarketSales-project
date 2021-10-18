@@ -21,7 +21,7 @@ file.product_line.replace(to_replace=['Fashion accessories'], value= ["fashion_a
 file.product_line.replace(to_replace=['Food and beverages'], value= ["food_bev"], inplace=True)
 file.product_line.replace(to_replace=['Electronic accessories'], value= ["electronic_accessories"], inplace=True)
 file.product_line.replace(to_replace=['Sports and travel'], value= ["sports_travel"], inplace=True)
-file.product_line.replace(to_replace=['Home and lifestyle'], value= ["home_lifesyle"], inplace=True)
+file.product_line.replace(to_replace=['Home and lifestyle'], value= ["home_lifestyle"], inplace=True)
 file.product_line.replace(to_replace=['Health and beauty'], value= ["health_beauty"], inplace=True)
 
 #product_line dummy variables
@@ -33,7 +33,7 @@ file['fashion_accessories']=product.fashion_accessories
 file['food_bev']=product.food_bev
 file['electronic_accessories']= product.electronic_accessories
 file['sports_travel']= product.sports_travel
-file['home_lifesyle']= product.home_lifesyle
+file['home_lifestyle']= product.home_lifestyle
 file['health_beauty']= product.health_beauty
 
 
@@ -84,6 +84,6 @@ file.loc[file.Rating >= 7, 'Rating'] = 0
 file.rename(columns = {"Rating":"Unsatisfied"}, inplace = True)
 
 # #changing the layout of the page
-file=file[['invoice_ID', 'Branch', 'City','Yangon', 'Naypyitaw','Mandalay', 'customer_type','member_1', 'Gender','Gender_Male1', 'product_line','fashion_accessories','food_bev', 'electronic_accessories','sports_travel', 'home_lifesyle', 'health_beauty', 'unit_price', 'Quantity', 'tax_5%', 'Total', 'Date','Time', 'Payment','Ewallet', 'Cash', 'credit_card', 'cogs', 'gross_margin_%', 'gross_income','Unsatisfied']]
+file=file[['invoice_ID', 'Branch', 'City','Yangon', 'Naypyitaw','Mandalay', 'customer_type','member_1', 'Gender','Gender_Male1', 'product_line','fashion_accessories','food_bev', 'electronic_accessories','sports_travel', 'home_lifestyle', 'health_beauty', 'unit_price', 'Quantity', 'tax_5%', 'Total', 'Date','Time', 'Payment','Ewallet', 'Cash', 'credit_card', 'cogs', 'gross_margin_%', 'gross_income','Unsatisfied']]
 
 new_file= file.to_csv("./new_supermarket_dummy_data.csv")

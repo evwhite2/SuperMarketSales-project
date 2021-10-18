@@ -96,3 +96,11 @@ Rating: Customer stratification rating on their overall shopping experience (On 
 9.	If most customer are male or female and members or non-members?
 
 10.	Does customer gender influence what product categories the customer buys?
+
+
+##### Required Packages
+
+pandas
+matplotlib
+statsmodels
+sklearn

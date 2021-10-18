@@ -23,7 +23,7 @@ def choiceLoop():
         for key, value in i.items():
             print(key, "---", value)
     c = input("\nWhat would you like to do?:\n")
-    for i in key_slection:1
+    for i in key_slection:
         for key in i:
             choice_selection.append(key)
     if c.isdigit():
