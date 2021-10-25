@@ -1,18 +1,24 @@
-# This code currently is not connected to anything, but will serve as controller for user input to the 'main file' with most/all of analytical code. 
-# I imagine we may make another code file for the Machine learningcode and yet another for the the MatLib code, depends how long it is.
-
 import pandas as pd
+from main import simple_stats 
+
 print("\n-------------Welcome to salesQ interface3-------------\n") # I just gave the interface a quick name, we can change this...
 
-choice_list = [{1: "Get Data"}, {2: "Run Analysis"}]
+sales_df = pd.read_csv("./supermarket_sales.csv")
+choice_list = [{1: "View sample analytics"}, {2: "Run Analysis"}]
 
+# def getData():
+#     print('...getting dataframe')
+#     sales_df = pd.read_csv("./supermarket_sales.csv")
+#     return sales_df
 
-def getData():
-    print('...getting dataframe')
-    return "...."
+def getSampleAnalysis(df, option):
+    print("\nrunning sample analysis....")
+    simple_stats(df, option)
+    print("\n-------------DONE-------------\n")
 
 def runAnalysis():
     print('...runing analysis')
+    print("\n-------------DONE-------------\n")
     
 
 def choiceLoop():
@@ -32,7 +38,7 @@ def choiceLoop():
             print("\nInvalid choice, please type a number from the options list:")
             choiceLoop()
         elif c == 1:
-            getData()
+            getSampleAnalysis(sales_df, 'all')
         elif c == 2:
             runAnalysis()
         else:
