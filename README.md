@@ -100,7 +100,7 @@ Rating: Customer stratification rating on their overall shopping experience (On 
 
 ##### Required Packages
 
-pandas
-matplotlib
-statsmodels
-sklearn
+- pandas
+- matplotlib
+- statsmodels
+- sklearn
