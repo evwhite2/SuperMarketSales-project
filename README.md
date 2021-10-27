@@ -104,3 +104,13 @@ Rating: Customer stratification rating on their overall shopping experience (On 
 - matplotlib
 - statsmodels
 - sklearn
+
+
+ToDo: 
+1. in Main file, sales percentages, profit margins per branch  (cross tabs?) - Dawood
+2. Create user defined inputs for histograms - Ellen
+3. Some kind of regression model on:
+     - satisfaction  - Krista
+     - totals and categorical data - Sean 
+     - cluster customer groups - Ellen
+4. Powerpoint!

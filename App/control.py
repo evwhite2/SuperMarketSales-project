@@ -1,10 +1,10 @@
 import pandas as pd
-from main import simple_stats 
+from main import simple_stats, printArrayDict
 
 print("\n-------------Welcome to salesQ interface3-------------\n") # I just gave the interface a quick name, we can change this...
 
 sales_df = pd.read_csv("./supermarket_sales.csv")
-choice_list = [{1: "View sample analytics"}, {2: "Run Analysis"}]
+choice_list = [{1: "View sample analytics"}, {2: "Run Analysis"}, {0: "Exit"}]
 
 # def getData():
 #     print('...getting dataframe')
@@ -22,14 +22,11 @@ def runAnalysis():
     
 
 def choiceLoop():
-    key_slection = list()
-    choice_selection =list()
-    for i in choice_list:
-        key_slection.append(i)
-        for key, value in i.items():
-            print(key, "---", value)
+    sel = printArrayDict(choice_list)
+    key_selection = sel[0]
+    choice_selection = sel[1]
     c = input("\nWhat would you like to do?:\n")
-    for i in key_slection:
+    for i in key_selection:
         for key in i:
             choice_selection.append(key)
     if c.isdigit():
@@ -41,6 +38,9 @@ def choiceLoop():
             getSampleAnalysis(sales_df, 'all')
         elif c == 2:
             runAnalysis()
+        elif c == 0:
+            print(".....exiting")
+            exit()
         else:
             print("exception")
     else:
@@ -48,4 +48,4 @@ def choiceLoop():
         choiceLoop()
 
 
-choiceLoop()
+# choiceLoop()

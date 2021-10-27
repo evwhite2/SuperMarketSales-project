@@ -90,3 +90,12 @@ def simple_stats(sales_df, option):
     print("Females\n", female_df["Product_line"].value_counts(sort = True))
 
 
+def printArrayDict(array):
+    key_slection = list()
+    choice_selection =list()
+    for i in array:
+        key_slection.append(i)
+        for key, value in i.items():
+            print(key, "---", value)
+    return key_slection, choice_selection
+
