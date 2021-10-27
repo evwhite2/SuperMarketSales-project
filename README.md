@@ -109,8 +109,14 @@ Rating: Customer stratification rating on their overall shopping experience (On 
 ToDo: 
 1. in Main file, sales percentages, profit margins per branch  (cross tabs?) - Dawood
 2. Create user defined inputs for histograms - Ellen
+     - Update the branch_histogram settings if there's time
+     - Incorporate data validation
+     - Consolidate the validation loop into helper function if there's time. 
 3. Some kind of regression model on:
      - satisfaction  - Krista
      - totals and categorical data - Sean 
      - cluster customer groups - Ellen
-4. Powerpoint!
+4. Powerpoint
+5. Before submitting the project:
+     - organize and remove unused files/folders
+     -remove unused dataset (i.e. 'new_supermarket_dummy_data.csv')
