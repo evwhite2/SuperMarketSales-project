@@ -27,7 +27,7 @@ def histogram_loop(df):
         print('\nInvalid Entry.\n')
         histogram_loop(df)
 
-# Need to update the settings for the histograms
+# Need to update the settings for the histograms, and compartmentalize them to return at the same time if possible. 
 def salesTimeSeries(df, opt):
     sales_df_BrB = df.loc[df.Branch==opt].copy()
     #create dataframe columns based on Date column from dataset breaking date into its components
