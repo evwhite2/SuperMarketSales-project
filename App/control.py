@@ -59,8 +59,13 @@ def choiceLoop():
         else:
             print("exception")
     else:
-        print("\INVALID choice. Input must be numeric.")
-        choiceLoop()
+        try:
+            if c.isalnum():
+                print(ValueError("Input must be Numeric"))
+                choiceLoop()
+        finally:
+            print("Unknown Input. Exiting process...")
+            exit()
     printRedirectMessage()
     choiceLoop()
 

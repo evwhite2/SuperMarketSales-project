@@ -1,5 +1,3 @@
-#THIS IS NOT DONE!
-
 #use pandas and matplotlib packages
 import pandas as pd
 import matplotlib.pyplot as plt
