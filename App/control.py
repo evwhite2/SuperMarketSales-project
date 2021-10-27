@@ -2,7 +2,7 @@ import pandas as pd
 import datetime
 from main import  simple_stats
 
-print("\n-------------Welcome to salesQ interface3-------------\n") # I just gave the interface a quick name, we can change this...
+print("\n-------------Welcome to salesQ interface-------------\n") # I just gave the interface a quick name, we can change this...
 
 choice_list = [{1: "View sample analytics"}, {2: "Run Analysis"}, {0: "Exit"}]
 raw_data_csv = './supermarket_sales.csv'
