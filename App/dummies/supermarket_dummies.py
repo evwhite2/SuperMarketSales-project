@@ -1,11 +1,8 @@
 import pandas as pd
 import datetime
 
-ct = datetime.datetime.now()
-
 file=pd.read_csv("./supermarket_sales.csv")
 
-# print("\n---------------------------------------------\n", "run timestamp: ", ct, "\n---------------------------------------------")
 
 #renaming colums with spaces
 file.rename(columns = {'Invoice ID':'invoice_ID', 'Customer type':'customer_type', 'Product line':'product_line', 'Unit price':'unit_price', 'Tax 5%':'tax_5%', 'gross margin percentage':'gross_margin_%', 'gross income':'gross_income'}, inplace = True)

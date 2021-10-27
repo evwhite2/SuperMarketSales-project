@@ -1,8 +1,6 @@
-
 import pandas as pd
 
-def simple_stats(sales_df, option):
-    opt = option
+def simple_stats(sales_df):
     
     #QUESTION 1 - Avg purchase price for each city- does the size of a city affect the amount purchased?
     sales_Br_A = sales_df.query('Branch == "A"')
@@ -88,14 +86,4 @@ def simple_stats(sales_df, option):
     print("\nProduct categories by purchaser gender\n")
     print("Males\n", male_df["Product_line"].value_counts(sort = True), "\n")
     print("Females\n", female_df["Product_line"].value_counts(sort = True))
-
-
-def printArrayDict(array):
-    key_slection = list()
-    choice_selection =list()
-    for i in array:
-        key_slection.append(i)
-        for key, value in i.items():
-            print(key, "---", value)
-    return key_slection, choice_selection
 
