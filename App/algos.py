@@ -18,6 +18,7 @@ class algorithmsLibrary:
         dummy_df= cdf.cleanDummies(rawDF)
         return dummy_df
 
+
     def runChi2_Gender_Vs_Satisfaction(df):
         #create new dataframe of just two columns: gender, unsatisfied (categorical variables)
         contingency_df = df[['Gender','Unsatisfied']]
@@ -42,29 +43,56 @@ class algorithmsLibrary:
             print("accept null hypothesis; satisfaction independent of gender")
         else:
             print("reject null hypothesis; satisfaction dependent of gender")
+    
 
-
-    def runLogit_Unsatisfied_Vs_ProductLine_Vs_Gender(df):
-        model = smf.logit(formula="Unsatisfied ~ fashion_accessories + food_bev + electronic_accessories + sports_travel + home_lifestyle + health_beauty + Gender_Male1", data = df).fit()
+    def runLogit_Unsatisfied_Vs_AllIndependentVariables(df):
+        model = smf.logit(formula="Unsatisfied ~ fashion_accessories + food_bev + electronic_accessories + home_lifestyle + health_beauty + Gender_Male1 + member_1 + Naypyitaw + Mandalay + Cash + credit_card + Quantity + unit_price", data = df).fit()
         print(model.summary())
+        #test only Mandalay variable
+        model_Mandalay = smf.logit(formula="Unsatisfied ~ Mandalay", data = df).fit()
+
+        print(model_Mandalay.summary())
+
+        #test only food_bev variable
+        model_food_bev = smf.logit(formula="Unsatisfied ~ food_bev", data = df).fit()
+
+        print(model_food_bev.summary())
+
+        #test all store dummy variables
+        model_stores = smf.logit(formula="Unsatisfied ~ Mandalay + Naypyitaw", data = df).fit()
+
+        print(model_stores.summary())
 
 
-    def runLogisticRegresstion_Unsatisfied_Vs_ProductLine(df):
-        model_y = df[['Unsatisfied']]
-        model_x = df[['fashion_accessories', 'food_bev', 'electronic_accessories', 'sports_travel', 'home_lifestyle', 'health_beauty']]
-        x_train, x_test, y_train, y_test = train_test_split(model_x, model_y, test_size=0.25, random_state=7)
-        print("----------> number unsatisfied:  ",sum(y_test.Unsatisfied), "\n")
-        y_train = np.ravel(y_train) #not a required step, but will produce a warning message with the Logistic Regression function if not included
-        log_reg_classifier = LogisticRegression(solver='lbfgs').fit(x_train, y_train)
-        print("resting score of logistic regression model:  ")
-        print(round(log_reg_classifier.score(x_test, y_test), 4), "\n")
-        unsatisfied_predict = log_reg_classifier.predict(x_test)
-        print("Predictions based on test data: ")
-        print(unsatisfied_predict)
-        print("Number predicted to be unsatisfied:  ", sum(unsatisfied_predict))
+
+    def runChi2_Mandalay_Vs_Satisfaction(df):
+        #create new dataframe of just two columns: Mandalay (found significant in logit), unsatisfied (categorical variables)
+        contingency_df = df[['Mandalay','Unsatisfied']]
+        #create frequency table using crosstab function in pandas
+        freq_tbl = pd.crosstab(contingency_df.Mandalay,contingency_df.Unsatisfied, margins=True)
+        #print frequency table
+        print(freq_tbl.head(5))
+
+        #establish Critical Value variable for chi2 contingency table based on degrees of freedom and p value
+        CriticalValue = 3.841
+        #create array of observed values from frequency table
+        observed = np.array([[350, 318], [151, 181]])
+        #use scipy chi2_contingency to calculate chi2 results
+        results = chi2_contingency(observed)
+        print(results)
+        #convert results tuple to list
+        results = list(results)
+        #convert Test Statistic from results list to float
+        TestStatistic = float(results[0])
+        print(TestStatistic)
+        #if statement to test hypothesis
+        if TestStatistic < CriticalValue:
+            print("accept null hypothesis; dissatisfaction independent of Mandalay")
+        else:
+            print("reject null hypothesis; significant association between dissatisfaction and Mandalay")
 
 
-    def runLogisticRegresstion_PredictUnsatisfied(df):
+    def runLogisticRegression_PredictUnsatisfied(df):
         model_y = df[["Unsatisfied"]]
         print("Descriptive Statistics for entire dataset: ")
         print(model_y.describe(),"\n")

@@ -47,11 +47,11 @@ def algoMenuLoop():
         if c == 1:
             algoLib.runChi2_Gender_Vs_Satisfaction(dummyDF)
         elif c ==2:
-            algoLib.runLogit_Unsatisfied_Vs_ProductLine_Vs_Gender(dummyDF)
+            algoLib.runLogit_Unsatisfied_Vs_AllIndependentVariables(dummyDF)
         elif c ==3:
-            algoLib.runLogisticRegresstion_Unsatisfied_Vs_ProductLine(dummyDF)
+            algoLib.runChi2_Mandalay_Vs_Satisfaction(dummyDF)
         elif c ==4:
-            algoLib.runLogisticRegresstion_PredictUnsatisfied(dummyDF)
+            algoLib.runLogisticRegression_PredictUnsatisfied(dummyDF)
         elif c ==5:
             algoLib.runCrossTabulation(dummyDF)
         elif c ==6:

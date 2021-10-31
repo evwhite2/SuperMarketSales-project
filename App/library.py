@@ -12,9 +12,9 @@ class Library:
         {4: "View FacetGrid of all Sales by Branch"}]
     algo_choice_list = [
         {1:"runChi2_Gender_Vs_Satisfaction"},
-        {2:"runLogit_Unsatisfied_Vs_ProductLine_Vs_Gender"}, 
-        {3: "runLogisticRegresstion_Unsatisfied_Vs_ProductLine"}, 
-        {4:"runLogisticRegresstion_PredictUnsatisfied"}, 
+        {2:"runLogit_Unsatisfied_Vs_AllIndependentVariables"}, 
+        {3: "runChi2_Mandalay_Vs_Satisfaction"}, 
+        {4:"runLogisticRegression_PredictUnsatisfied"}, 
         {5: "runCrossTabulation"},
         {6: "runKMeansAnalysis - UNFINISHED"}]
 
