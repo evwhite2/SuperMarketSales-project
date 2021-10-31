@@ -17,7 +17,7 @@ def filterQuery(df):
     selection = c[2]-1
     field = c[1][int(selection)]
     series = df[field]
-    print(f"SELECTION: {selection}\nFIELD:  {field}")
+    print(f"\nGathering info to filter {field}\n")
     if field in categorical_list:
         query_items = lib.getCategories(df, field)
         df['flagged'] = series.isin(query_items)
