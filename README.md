@@ -108,6 +108,7 @@ Rating: Customer stratification rating on their overall shopping experience (On 
 - datetime
 - seaborn
 - statistics
+- statsmodels.formula.api
 
 ToDo: 
 1. in Main file, sales percentages, profit margins per branch  (cross tabs?) - Dawood
