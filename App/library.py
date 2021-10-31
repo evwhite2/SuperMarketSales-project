@@ -112,9 +112,9 @@ class Library:
 class CleanDF:
     def cleanTypes(df):
         for i in df.Date:
-            df.Date.replace(to_replace=[i], value=[pd.to_datetime(i)], inplace=True)
+            df.Date.replace(to_replace=[i], value=[pd.to_datetime(i).date()], inplace=True)
         for i in df.Time:
-            df.Time.replace(to_replace=[i], value=[pd.to_datetime(i)], inplace=True)
+            df.Time.replace(to_replace=[i], value=[pd.to_datetime(i).strftime("%H:%M:%S")], inplace=True)
         return df
 
 

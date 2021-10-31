@@ -1,4 +1,5 @@
 
+import statistics
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -24,11 +25,11 @@ def filterQuery(df):
         filtered_df = df.query('flagged == True')
         return filtered_df
     else:
-        if type(series) == float:
+        if type(series) == np.typecodes('float64'):
             print("FLOAT TYPE", type(series[3])) #TEST INFO
-            mn = min(series,key=lambda x:float(x))
-            mx = max(series,key=lambda x:float(x))
-            print(mn, mx)
+            float_min = np.min(series)
+            float_max = max(series,key=lambda x:float(x))
+            print(float_min, float_max)
         elif type(series) == pd._libs.tslibs.timestamps.Timestamp:
             print("DATE TYPE", type(series[3])) #TEST INFO
             print(max(df[field]). min(df[field]))
@@ -37,7 +38,8 @@ def filterQuery(df):
             print(series.head(2)) #TEST INFO
     print("\nMODIFIED DF:\n") #TEST INFO
     print(df.head()) #TEST INFO
-    filterQuery(ref_df)
+    filterQuery(df_ref)
+    exit() #TESTING INPUT
 
 
 def histogram_loop(df):
@@ -107,7 +109,3 @@ def generateFacetGrid(df):
     ax = FacGr.map(sns.distplot, "Total")
     plt.show()
 
-
-#TEMPORARY TEST DATT
-df = pd.read_csv('./supermarket_sales.csv')
-filterQuery(df)
