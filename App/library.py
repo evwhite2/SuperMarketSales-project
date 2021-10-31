@@ -2,9 +2,23 @@ import datetime
 import pandas as pd
 
 class Library:
-    choice_list = [{1: "View sample analytics"}, {2: "Run Analysis"}]
-    analytics_choice_list = [{1: "Sales Histograms by branch"}, {2: "Machine Learning"}, {3: "View box plot of Branch ratings"}, {4: "View FacetGrid of all Sales by Branch"}]
-    ml_choice_list = [{1:"test case 1"}, {2:"test case"}]
+    choice_list = [
+        {1: "View sample analytics"}, 
+        {2: "Run Analysis"}]
+    analytics_choice_list = [
+        {1: "Sales Histograms by branch"}, 
+        {2: "Machine Learning"}, 
+        {3: "View box plot of Branch ratings"}, 
+        {4: "View FacetGrid of all Sales by Branch"}]
+    algo_choice_list = [
+        {1:"runChi2_Gender_Vs_Satisfaction"},
+        {2:"runLogit_Unsatisfied_Vs_ProductLine_Vs_Gender"}, 
+        {3: "runLogisticRegresstion_Unsatisfied_Vs_ProductLine"}, 
+        {4:"runLogisticRegresstion_PredictUnsatisfied"}, 
+        {5: "runCrossTabulation"},
+        {6: "runKMeansAnalysis - UNFINISHED"}]
+
+
     raw_data_csv = './supermarket_sales.csv'
 
     def validateChoice(k, v, prompt):
@@ -146,7 +160,6 @@ class CleanDF:
         df.to_csv("./new_supermarket_dummy_data.csv")
         return df
 
-        
            
 export: Library 
 export: CleanDF
