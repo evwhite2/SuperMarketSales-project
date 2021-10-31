@@ -1,4 +1,5 @@
 import datetime
+from numpy import lib
 import pandas as pd
 
 class Library:
@@ -17,7 +18,10 @@ class Library:
         {4:"runLogisticRegression_PredictUnsatisfied"}, 
         {5: "runCrossTabulation"},
         {6: "runKMeansAnalysis - UNFINISHED"}]
-
+    filter_options_list = [
+        {1: "Filter minimum value only"}, 
+        {2: "Filter maximum value only"},
+        {3: "Filter minimum & maximum values"}]
 
     raw_data_csv = './supermarket_sales.csv'
 
@@ -50,6 +54,32 @@ class Library:
                 break
         return bool(options.index(ip))
 
+    def validateMinMax(df, field):
+        filter_type = Library.printArrayDict(Library.filter_options_list)
+        filter_type = filter_type[2]
+        while filter_type > 0:
+            if filter_type == 1:
+                n2 = input("Enter minimum value filter: ")
+                df = df.query(f"{field} > {n2}")
+                filter_type = filter_type-1
+            if filter_type == 2:
+                n1 = input("Enter maximum value filter: ")
+                df = df.query(f"{field} < {n1}")
+                filter_type = filter_type-2
+            elif filter_type == 3:
+                n1 = input("Enter maximum value filter: ")
+                n2 = input("Enter minimum value filter: ")
+                df = df.query(f"{field} < {n1}")
+                df = df.query(f"{field} > {n2}")
+                filter_type = filter_type-3
+            else:
+                print("exiting filters")
+                break
+        # print("\nMODIFIED DF:") #TEST INFO
+        # print(df[field], df) #TEST INFO
+        return(df)
+
+
     def printArrayDict(list_of_kv_pairs):
         k_list=list()
         v_list=list()
@@ -68,8 +98,8 @@ class Library:
         timestamp = now.strftime("%H:%M:%S")
         print(f'-------------Operation complete at {timestamp}-------------\n\n{string}\n')
 
-    def createListDict(df):
-        fields_list = list(df.columns)
+    def createListDict(df_col):
+        fields_list = df_col
         field_list_dict = []
         for i in fields_list:
             field_list_dict.append({fields_list.index(i)+1:i})
@@ -115,6 +145,10 @@ class CleanDF:
             df.Date.replace(to_replace=[i], value=[pd.to_datetime(i).date()], inplace=True)
         for i in df.Time:
             df.Time.replace(to_replace=[i], value=[pd.to_datetime(i).strftime("%H:%M:%S")], inplace=True)
+        return df
+
+    def cleanNames(df):
+        df.rename(columns = {'Invoice ID':'invoice_ID', 'Customer type':'customer_type', 'Product line':'product_line', 'Unit price':'unit_price', 'Tax 5%':'tax_5%', 'gross margin percentage':'gross_margin_%', 'gross income':'gross_income'}, inplace = True)
         return df
 
 

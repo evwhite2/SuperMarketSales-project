@@ -10,13 +10,19 @@ from library import CleanDF as cdf
 
 
 def filterQuery(df):
-    df_ref = df[["Customer type", "Product line", "Unit price", "Quantity", "Total", "Date", "Time", "Payment", "gross income", "Rating"]]
+    # df_ref = df[["Customer type", "Product line", "Unit price", "Quantity", "Total", "Date", "Time", "Payment", "gross income", "Rating"]]
+    df = cdf.cleanNames(df)
     df = cdf.cleanTypes(df)
-    categorical_list = ["Customer type", "Product line"]
-    listed = lib.createListDict(df_ref)
+    df_col = ['customer_type', 'product_line', 'unit_price', 'Quantity', 'Total', 'Payment', 'gross_income', 'Rating']
+    categorical_list = ["customer_type", "product_line", "Payment"]
+    datetime_list = ["Date", "Time"]
+    listed = lib.createListDict(df_col)
     c = lib.printArrayDict(listed)
-    selection = c[2]-1
-    field = c[1][int(selection)]
+    idx = c[2]-1
+    selection = c[2]
+    if selection == 0:
+        return 0
+    field = c[1][int(idx)]
     series = df[field]
     print(f"\nGathering info to filter {field}\n")
     if field in categorical_list:
@@ -25,37 +31,39 @@ def filterQuery(df):
         filtered_df = df.query('flagged == True')
         return filtered_df
     else:
-        if type(series) == np.typecodes('float64'):
-            print("FLOAT TYPE", type(series[3])) #TEST INFO
-            float_min = np.min(series)
-            float_max = max(series,key=lambda x:float(x))
-            print(float_min, float_max)
-        elif type(series) == pd._libs.tslibs.timestamps.Timestamp:
-            print("DATE TYPE", type(series[3])) #TEST INFO
-            print(max(df[field]). min(df[field]))
+        if field in datetime_list:
+            f_min = min(series)
+            f_max = max(series)
         else:
-            print("UNKNOWN TYPE", type(series[3])) #TEST INFO
-            print(series.head(2)) #TEST INFO
-    print("\nMODIFIED DF:\n") #TEST INFO
-    print(df.head()) #TEST INFO
-    filterQuery(df_ref)
-    exit() #TESTING INPUT
+            sample = series[1]
+            if sample.dtype in [ np.int64 , np.float64]:
+                f_min = np.min(series)
+                f_max = np.max(series)
+            else:
+                print("\nUNKNOWN TYPE!\n", sample, type(sample))
+                print("retrying....")
+                filterQuery(df)
+        print(f"\nFor {field}:\nMinimum Value: {f_min}\nMaximum Value: {f_max}")
+        filtered_df = lib.validateMinMax(df, field)
+    return filtered_df
 
 
 def histogram_loop(df):
     print("\nWhich branch would you like to model?\n")
-    opt_list = [{1: "Branch A"}, {2: "Branch B"}, {3: "Branch C"}]
+    opt_list = [{1: "Branch A"}, {2: "Branch B"}, {3: "Branch C"}, {4: "All Branches"}]
     c = lib.printArrayDict(opt_list)
     opt = c[2]
     filter_opt = input('Would you like to add a filter? type y/n:    ')
     if lib.validateYN(filter_opt):
-        filterQuery(df)
+       df = filterQuery(df)
     if opt==1: 
         getBranchSeries(df, 'A')
     elif opt==2:
         getBranchSeries(df, 'B')
     elif opt==3:
         getBranchSeries(df, 'C')
+    elif opt==4:
+        getBranchSeries(df, 'X')
     elif opt==0:
         next()
     else:
@@ -65,10 +73,12 @@ def histogram_loop(df):
 
 def getBranchRatings(df):
      generateBoxPlot(df, "Branch", "Rating","Distribution of Ratings by Branch")
-    
+
 
 def getBranchSeries(df, opt):
-    sales_df_BrB = df.loc[df.Branch==opt].copy()
+    sales_df_BrB = df.copy()
+    if opt in ['A', 'B', 'C']:
+        sales_df_BrB = sales_df_BrB.loc[df.Branch==opt]
     sales_df_BrB['Date'] = pd.to_datetime(sales_df_BrB['Date']) #create dataframe columns based on Date column from dataset 
     sales_df_BrB['Time'] = pd.to_datetime(sales_df_BrB['Time'])#create dataframe columns based on Time column
     #create series based on dataframe column, hour
