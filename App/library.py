@@ -42,13 +42,13 @@ class Library:
     
     def validateYN(ip):
         ip = ip.lower()
-        options = ['y', 'n']
+        options = ['n', 'y']
         while True:
             if ip not in options:
                 ip = input("Please confirm 'y' or 'n")
             else:
                 break
-        return True 
+        return bool(options.index(ip))
 
     def printArrayDict(list_of_kv_pairs):
         k_list=list()

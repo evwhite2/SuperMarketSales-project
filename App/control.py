@@ -9,9 +9,11 @@ rawdata = './supermarket_sales.csv'
 
 print("\n-------------Welcome to salesQ interface-------------\n") 
 
+
 def getRawData():
     sales_df = pd.read_csv(rawdata)
     return sales_df
+
 
 def analysisMenuLoop():
     sales_df = getRawData().copy()
@@ -35,6 +37,7 @@ def analysisMenuLoop():
         analysisMenuLoop()  
     mainMenuLoop()
 
+
 def algoMenuLoop():
     c = lib.printArrayDict(lib.algo_choice_list)
     c = c[2]
@@ -55,8 +58,6 @@ def algoMenuLoop():
             algoLib.runKMeansAnalysis(dummyDF) # MIGHT NEED TO SWTICH DUMMY DATA FOR THIS
         algoMenuLoop()
     analysisMenuLoop()  
-
-
 
     
 

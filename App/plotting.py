@@ -39,8 +39,8 @@ def histogram_loop(df):
     opt_list = [{1: "Branch A"}, {2: "Branch B"}, {3: "Branch C"}]
     c = lib.printArrayDict(opt_list)
     opt = c[2]
-    filter_opt = lib.validateYN(input('Would you like to add a filter? type y/n:    '))
-    if filter_opt:
+    filter_opt = input('Would you like to add a filter? type y/n:    ')
+    if lib.validateYN(filter_opt):
         filterQuery(df)
     if opt==1: 
         getBranchSeries(df, 'A')
