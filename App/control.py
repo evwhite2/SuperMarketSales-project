@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 from simple_stats import simpleStats as ss
 from plotting import histogram_loop, getBranchRatings, generateFacetGrid
 from library import Library as lib
@@ -6,6 +7,7 @@ from library import CleanDF as cdf
 from algos import algorithmsLibrary as algoLib
 
 rawdata = './supermarket_sales.csv'
+
 
 print("\n-------------Welcome to salesQ interface-------------\n") 
 
@@ -35,6 +37,7 @@ def analysisMenuLoop():
             break
         lib.printRedirectMessage("ANALYTICS MENU")
         analysisMenuLoop()  
+    print("\n\nMAIN MENU\n")
     mainMenuLoop()
 
 
@@ -56,7 +59,11 @@ def algoMenuLoop():
             algoLib.runCrossTabulation(dummyDF)
         elif c ==6:
             algoLib.runKMeansAnalysis(dummyDF) # MIGHT NEED TO SWTICH DUMMY DATA FOR THIS
+        elif c ==0:
+            break
+        lib.printRedirectMessage("ALGORITHMS MENU")
         algoMenuLoop()
+    print("\n\nANALYTICS MENU\n")
     analysisMenuLoop()  
 
     
