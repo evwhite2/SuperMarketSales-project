@@ -89,15 +89,23 @@ class Library:
         while True:
             try:
                 c = Library.validateChoice(k_list, v_list, 'Select from list to INCLUDE in query:    ')
+                if c == 0:
+                    print("Invalid input.")
+                    continue
                 q_list.append(v_list[c-1])
-                next_rm = input("Would you like to add another? (type y/n):   ").lower()
                 if len(q_list)==len(v_list)-1:
                     break
-                if next_rm =='n':
-                    break
+                else:
+                    next_prompt = input("Would you like to add another? (type y/n):   ")
+                    if_next = Library.validateYN(next_prompt)
+                    if if_next == False:
+                        break
+                    else:
+                        continue
             except ValueError:
-                print("invalid input")
+                print("Invalid input")
                 break
+        print(f"Filtering selection to include records where {field} in {q_list}")
         return q_list
 
     

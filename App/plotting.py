@@ -25,13 +25,19 @@ def filterQuery(df):
         return filtered_df
     else:
         if type(series) == float:
+            print("FLOAT TYPE", type(series[3])) #TEST INFO
             mn = min(series,key=lambda x:float(x))
             mx = max(series,key=lambda x:float(x))
             print(mn, mx)
         elif type(series) == pd._libs.tslibs.timestamps.Timestamp:
+            print("DATE TYPE", type(series[3])) #TEST INFO
             print(max(df[field]). min(df[field]))
         else:
-            print(series.head())
+            print("UNKNOWN TYPE", type(series[3])) #TEST INFO
+            print(series.head(2)) #TEST INFO
+    print("\nMODIFIED DF:\n") #TEST INFO
+    print(df.head()) #TEST INFO
+    filterQuery(ref_df)
 
 
 def histogram_loop(df):
@@ -100,3 +106,8 @@ def generateFacetGrid(df):
     FacGr = sns.FacetGrid(df, col="Branch")
     ax = FacGr.map(sns.distplot, "Total")
     plt.show()
+
+
+#TEMPORARY TEST DATT
+df = pd.read_csv('./supermarket_sales.csv')
+filterQuery(df)
