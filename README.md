@@ -104,7 +104,10 @@ Rating: Customer stratification rating on their overall shopping experience (On 
 - matplotlib
 - statsmodels
 - sklearn
+- numpy
 - datetime
+- seaborn
+- statistics
 
 ToDo: 
 1. in Main file, sales percentages, profit margins per branch  (cross tabs?) - Dawood
