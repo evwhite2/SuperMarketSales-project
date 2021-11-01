@@ -1,4 +1,4 @@
-'''  PLOTTING  - Last Modified Oct 31, 2021
+'''  PLOTTING  - Last Modified Nov 1, 2021
 This file contains all the functions call by control which build and show charts and graphs using visualization libraries seaborn and matplotlib.pyplot.
 
 '''
@@ -49,6 +49,8 @@ def filterQuery(df):
                 filterQuery(df)
         print(f"\nFor {field}:\nMinimum Value: {f_min}\nMaximum Value: {f_max}")
         filtered_df = lib.validateMinMax(df, field)
+        print("\n Filtered DataFrame SAMPLE")
+        print(filtered_df.head(10))
     return filtered_df
 
 
