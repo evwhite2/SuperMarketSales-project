@@ -1,3 +1,9 @@
+'''  ALGORTIHMS LIBRARY  - Last Modified Oct 31, 2021
+This file is holds all the algorithmics functionality available to users via the control file. 
+It also calls on the CleanDF class in the library file to produce and retrieve a csv and DataFrame of the categorical field dummy variables
+Notes: The runKMeansAnalysis function is not calibrated as of Nov 1, 21. 
+'''
+
 import numpy as np
 import pandas as pd
 import statsmodels.formula.api as smf
@@ -169,12 +175,6 @@ class algorithmsLibrary:
         plt.xlabel('center x')
         plt.ylabel('center y')
         plt.show()
-        # c1 = df.query('cluster==0')
-        # c2 = df.query('cluster==1')
-        # c3 = df.query('cluster==2')
-        # c4 = df.query('cluster==3')
-        # c5 = df.query('cluster==4')
-        # print(c1.head(10))
 
 
 export: algorithmsLibrary

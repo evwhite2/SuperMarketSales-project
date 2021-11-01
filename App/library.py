@@ -1,3 +1,7 @@
+'''  LIBRARY & CLEANDF  - Last Modified Oct 31, 2021
+This file contains all the helper functions used to produce outputs to the user in all other App/ files. The library class is separate from the cleanDF class because of their speicific purposes.
+'''
+
 import datetime
 from numpy import lib
 import pandas as pd
@@ -17,7 +21,7 @@ class Library:
         {3: "runChi2_Mandalay_Vs_Satisfaction"}, 
         {4:"runLogisticRegression_PredictUnsatisfied"}, 
         {5: "runCrossTabulation"},
-        {6: "runKMeansAnalysis - UNFINISHED"}]
+        {6: "runKMeansAnalysis"}]
     filter_options_list = [
         {1: "Filter minimum value only"}, 
         {2: "Filter maximum value only"},

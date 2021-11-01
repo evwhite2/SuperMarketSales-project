@@ -1,3 +1,7 @@
+'''  PLOTTING  - Last Modified Oct 31, 2021
+This file contains all the functions call by control which build and show charts and graphs using visualization libraries seaborn and matplotlib.pyplot.
+
+'''
 
 import statistics
 import pandas as pd

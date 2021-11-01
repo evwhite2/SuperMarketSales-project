@@ -1,3 +1,7 @@
+'''  CONTROL  - Last Modified Oct 31, 2021
+This is the root file of the App. Users should run the program from this file. It calls upon functions from all other App/ files and to produce outputs, and reads/creats DataFrames from the raw 'supermarket_sales.csv' file which are passed to the utlized functions outside this file.
+'''
+
 import pandas as pd
 import os
 from simple_stats import simpleStats as ss

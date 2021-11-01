@@ -1,44 +1,13 @@
-# Project Rebric
+# Project Description
 
-The group project is an important course component in which students use the Python programming language to manipulate and analyze data to support business decision making. Each of the groups will be responsible for selecting their topic and identifying relevant data to use, and having that topic approved by the instructor.  
-
-Each completed project should include the following components: 
-
-1. The project must utilize a set of stored data in order to obtain information used in business decision making. 
-     This stored data ideally is obtained via the World Wide Web, but can also be in files and/or in an Access database.  
-     The data set(s) for the project must not be the Taxi Trips or GSS data sets used in our textbook.  
-     Each observation (row) in the data should pertain to a unique object of interest and have multiple attributes (columns) that pertain to the object.
-     As you are identifying and/or creating this data set, it is particularly important to identify a dependent variable (or variables), that is a specific attribute (or attributes) that you would like to predict based on the values of the remaining attributes. 
-     You should have at least 3 numerical values (think of values that result from measuring or counting something) 
-     and at least 3 categorical variables (think of yes/no situations and values that are not numbers).  
-     Note that the numerical attributes will later be used to explain the dependent variable that you identified.  For example, if you had salaries of basketball players as the dependent variable, numerical variables could include the player’s height in inches, average rebounds per game and average points scored per game.  Categorical variables could include team, if the player has been an all-star (yes/no), and player position (i.e. guard).  
-     Your data set needs to have at the very minimum 50 observations, but ideally has hundreds or thousands (or more). 
-
-2. Statistical calculations used to summarize the data for the business decision being supported.  These calculations can be constructed using formulas and functions and ideally utilize Python packages.
-
-3. The use of data visualization for analyzing your data using the matplotlib and/or the seaborn Python packages.
-
-4. The use of Machine Learning to develop a model using either supervised or unsupervised learning with your data.  
-
-5. A user interface to enable the user to specify (type in) variations and/or restrictions affecting the supported decision.  Some examples include using different time periods, different products, or different objectives.   
-
-6. Help/guidance for the user, particularly to ensure proper input values, but also to provide explanations to the user when needed. 
-
-7. Validation of user inputs that prevents incomplete, inaccurate or unrealistic entries by the user.  
-
-
-Each group will present their project to the class on 11/1/2021.  
-The graded components of the project will be the completed project (70%), a group presentation to the class (20%) and a peer evaluation (10%).  
-Due Date Item Due 9/27/21 Brief description of your group's project and description of data to be used 11/1/21 Complete Project and In-Class Presentation 
-
-
-# Proposal 
+## Proposal 
 ### Group 3: 
 Dawood Ahmed, Ellen White, Krista Galvin, Sean Daley
 Brief description of your group's project and description of data to be used
 
 ##### Data set source
 Kaggle.com
+https://www.kaggle.com/aungpyaeap/supermarket-sales 
 
 ##### Description
 Historical sales data over 3 month period in 2019 from a supermarket company from 3 different branches. 
@@ -102,6 +71,7 @@ Rating: Customer stratification rating on their overall shopping experience (On 
 
 - pandas
 - matplotlib
+     . pyplot
 - statsmodels
 - sklearn
 - numpy
@@ -109,18 +79,12 @@ Rating: Customer stratification rating on their overall shopping experience (On 
 - seaborn
 - statistics
 - statsmodels.formula.api
+- scipy.stats  chi2_contingency
+- sklearn
+     .model_selection
+     .linear_model
+     .metrics
+     .cluster
+     .lines
+     .preprocessing
 
-ToDo: 
-1. in Main file, sales percentages, profit margins per branch  (cross tabs?) - Dawood
-2. Create user defined inputs for histograms - Ellen
-     - Update the branch_histogram settings if there's time
-     - Incorporate data validation
-     - Consolidate the validation loop into helper function if there's time. 
-3. Some kind of regression model on:
-     - satisfaction  - Krista
-     - totals and categorical data - Sean 
-     - cluster customer groups - Ellen
-4. Powerpoint
-5. Before submitting the project:
-     - organize and remove unused files/folders
-     -remove unused dataset (i.e. 'new_supermarket_dummy_data.csv')

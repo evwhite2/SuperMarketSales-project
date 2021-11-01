@@ -1,3 +1,7 @@
+'''  SIMPLE STATISTICS  - Last Modified Oct 25, 2021
+This file prints a set of variuous statistics from the raw dataset for analytical purposes.
+'''
+
 class simpleStats:
     def printSimpleStats(sales_df):
         #QUESTION 1 - Avg purchase price for each city- does the size of a city affect the amount purchased?
