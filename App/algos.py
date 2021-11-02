@@ -1,7 +1,8 @@
-'''  ALGORTIHMS LIBRARY  - Last Modified Oct 31, 2021
+'''  ALGORTIHMS LIBRARY  - Last Modified Nov 1, 2021
 This file is holds all the algorithmics functionality available to users via the control file. 
 It also calls on the CleanDF class in the library file to produce and retrieve a csv and DataFrame of the categorical field dummy variables
-Notes: The runKMeansAnalysis function is not calibrated as of Nov 1, 21. 
+
+Noted per Presentation - We did not have the KMean analysis working properly at the time, but it's been updated and works to product two different plots
 '''
 
 import numpy as np
@@ -118,6 +119,8 @@ class algorithmsLibrary:
         log_reg_classifier = LogisticRegression(solver='lbfgs').fit(x_train, y_train)
         print("training score of logistic regression model: ")
         print(round(log_reg_classifier.score(x_train, y_train),4),"\n")
+        print("testing score of logistic regression model: ")
+        print(round(log_reg_classifier.score(x_test, y_test),4),"\n")
         #construct list of predictions
         unsatisfied_predict=log_reg_classifier.predict(x_test)
         print("Predictions based on test data:")
@@ -157,23 +160,38 @@ class algorithmsLibrary:
         print(f"The average total price for using Ewallet is ${cc_total}") 
 
 
-    def runKMeansAnalysis(df):
-        #I think I need to make new dummy data with more than 1's and 0s to do a proper scatter plot
-        x_vars = df[['Yangon', 'Naypyitaw', 'Mandalay', 'member_1', 'Gender_Male1', 'fashion_accessories','food_bev', 'electronic_accessories','sports_travel','home_lifestyle','health_beauty']].values
+    def runKMeansAnalysis(df): 
+        print("\n\nRunning Cluster Analysis on fields with relevant information related specifically to customer. \n Number of Clusters = 5")
+        x_vars = df[['Yangon', 'Naypyitaw', 'Mandalay', 'member_1', 'Gender_Male1', 'fashion_accessories','food_bev', 'electronic_accessories','sports_travel','home_lifestyle','health_beauty', 'Total', "Ewallet", "Cash", "credit_card", "Quantity"]].values
         data_transformed = MinMaxScaler().fit(x_vars).transform(x_vars)
         kmeans_model = KMeans(n_clusters = 5, random_state=1).fit(data_transformed)
         centroids = kmeans_model.cluster_centers_
         df['cluster'] = kmeans_model.labels_
-        cen_x = [i[0] for i in centroids]
-        cen_y = [i[1] for i in centroids]
-        df['cen_x'] = df.cluster.map({0:cen_x[0], 1:cen_x[1], 2:cen_x[2], 3:cen_x[3], 4:cen_x[4]})
-        df['cen_y'] = df.cluster.map({0:cen_y[0], 1:cen_y[1], 2:cen_y[2], 3:cen_y[3], 4:cen_y[4]})
         colors = ['#DF2020', '#81DF20', '#2095DF', '#884EA0', '#F4D03F']
-        df['color'] = df.cluster.map({0:colors[0], 1:colors[1], 2:colors[2], 3:colors[3], 4:colors[4]})
+        df['color'] = df.cluster
+        for i in df.color:
+            i = colors[i]
+        #configuring the legend
+        legend_elements = [Line2D([0], [0], marker='o', color='w', label='Cluster {}'.format(i+1), markerfacecolor=mcolor, markersize=5) for i, mcolor in enumerate(colors)]
+        #plotting cluster analysis Price v Quantity
         fig, ax = plt.subplots(1, figsize=(8,8))
-        ax.scatter(df.cen_x, df.cen_y, c=df.color, alpha=1, s=10)
-        plt.xlabel('center x')
-        plt.ylabel('center y')
+        ax.scatter(df.Quantity, df.Total, c=df.color, alpha=.5, s=25)
+        plt.xlabel('price of purchased item')
+        plt.ylabel('quantity')
+        plt.legend(handles=legend_elements, loc='upper right')
+        plt.title('Price vs Quantity, number clusters = 5\n', loc='left', fontsize=16)
+        #plotting cluster analysis City v Product line
+        fig, ax = plt.subplots(1, figsize=(8,8))
+        ax.scatter(df.City, df.product_line, c=df.color, alpha=.5, s=100)
+        plt.xlabel('Branch City')
+        plt.ylabel('Product Line')
+        plt.title('Product purchases by Branch City, number clusters = 5\n', loc='left', fontsize=16)
+        #plotting cluster analysis City v Product line
+        fig, ax = plt.subplots(1, figsize=(8,8))
+        ax.scatter(df.product_line, df.Total, c=df.color, alpha=.5, s=50)
+        plt.xlabel('Product Line')
+        plt.ylabel('Price Total')
+        plt.title('Product Line vs price Total, number clusters = 5\n', loc='left', fontsize=16)
         plt.show()
 
 
